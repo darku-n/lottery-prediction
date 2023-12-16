@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from time import sleep
 import random
 
+#web scrapping
+
 browser = webdriver.Chrome()
 
 #url = "https://www.lottoland.com/br/megasena/resultados"
@@ -49,10 +51,26 @@ while True:
 #analyse
 
 number_weight = list()
+number_weight_inverted = list()
 loteria = list()
+total_num_drawn = 60
+
+for n in numberlist:
+    total_num_drawn += n
+
 for c in range(0, 60):
-    number_weight.append(numberlist.count(c))
+    number_weight.append(numberlist.count(c + 1) / total_num_drawn)
+    number_weight_inverted.append((1 - number_weight[c]))
+
+#    number_weight.append(numberlist.count(c))
     loteria.append(c +1)
+
+print(loteria)
+print(number_weight)
+print(number_weight_inverted)
+print(total_num_drawn)
+
+
 
 #results
 print()
